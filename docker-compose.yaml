@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    build: .
+
+    depends_on:
+      - db
+    
+    environment:
+      - POSTGRES_DB=railway
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=NWm8SBK83elobB3M4JIq
+      - POSTGRES_HOST=containers-us-west-76.railway.app
+    ports:
+      - 8000:8000
+  
+  db:
+    image: postgres:12.11
+    environment:
+     - POSTGRES_DB=railway
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=5qSwBKb9GoL95TR99JnA
+
+    ports:
+      - 5429:6596
+    volumes:
+      - ./data/db:/var/lib/postgresql/data

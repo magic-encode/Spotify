@@ -1,0 +1,33 @@
+name: Spotify API CI
+
+
+on: [push]
+
+jobs:
+  run-tests:
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          DEBUG: ${{ secrets.DEBUG }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ env.POSTGRES_PORT }}
+        ports:
+          - 5432:7577
+
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULEL: spotify.settings
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install Requirements
+        run: pip3 install -r requirements.txt
+      - name: Run Tests
+        run: python3 manage.py test
