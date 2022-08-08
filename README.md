@@ -1,7 +1,7 @@
 
 # API Root | Simple Django-Rest-Framework 
 Sourcode and Resources for My Site <br>
-Live website - http://206.189.49.140/ <hr><br>
+Live website - https://music.mysite-live.uz/ <hr><br>
 <img src="./docs/spotify.png">
 <hr>
 
